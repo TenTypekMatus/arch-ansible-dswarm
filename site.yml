@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Setup Docker
+      community.general.pacman:
+        name:
+          - docker
+        state: present
+    - name: Enable docker
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: yes
+    - name: Create docker swarm
+      swarm
