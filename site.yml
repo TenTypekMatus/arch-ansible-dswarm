@@ -13,4 +13,4 @@
         state: started
         enabled: yes
     - name: Create docker swarm
-      swarm
+      
