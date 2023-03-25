@@ -1,0 +1,3 @@
+[submodule "roles/dswarm"]
+	path = roles/dswarm
+	url = https://github.com/ruanbekker/ansible-docker-swarm.git
