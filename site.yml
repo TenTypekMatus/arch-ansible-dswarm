@@ -1,16 +1,18 @@
----
 - hosts: all
   become: yes
+  
+  vars_files:
+    - vars.yml
+    - credentials.yml
+  
   tasks:
-    - name: Setup Docker
-      community.general.pacman:
-        name:
-          - docker
-        state: present
-    - name: Enable docker
-      ansible.builtin.service:
-        name: docker
-        state: started
-        enabled: yes
-    - name: Create docker swarm
-      
+  - name: Install Ubuntu
+    ansible.builtin.import_role:
+        name: notthebee.ubuntu_autoinstall
+  - name: Setup Docker
+    ansible.builtin.import_role:
+      - geerlingguy.pip
+      - geerlingguy.docker
+  - name: Create docker swarm
+    ansible.builtin.import_playbook:
+        - roles/aur/dswarm/deploy-swarm.yml
