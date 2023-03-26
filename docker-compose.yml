@@ -12,7 +12,7 @@ services:
       SHOW_PASSWORD_HINT: "false"
       SIGNUPS_ALLOWED: "false"
       SIGNUPS_VERIFY: "false"
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
       WEBSOCKET_ENABLED: "true"
     hostname: TypekMatus
     image: vaultwarden/server
@@ -55,7 +55,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
     hostname: TypekMatus
     image: lscr.io/linuxserver/deluge
     logging:
@@ -120,7 +120,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
     image: lscr.io/linuxserver/fail2ban
     logging:
       driver: json-file
@@ -155,7 +155,7 @@ services:
   gitea:
     container_name: gitea
     environment:
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
       USER_GID: "1000"
       USER_UID: "1000"
     hostname: TypekMatus
@@ -201,7 +201,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
     hostname: TypekMatus
     image: lscr.io/linuxserver/heimdall
     logging:
@@ -243,7 +243,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
     hostname: TypekMatus
     image: lscr.io/linuxserver/jellyfin
     logging:
@@ -290,7 +290,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
     hostname: TypekMatus
     image: lscr.io/linuxserver/nextcloud
     logging:
@@ -342,7 +342,7 @@ services:
       PGID: "1000"
       PUID: "1000"
       SUBDOMAINS: www
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
       URL: ""
       VALIDATION: http
     hostname: TypekMatus
@@ -386,7 +386,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
     hostname: TypekMatus
     image: lscr.io/linuxserver/syncthing
     logging:
@@ -437,7 +437,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
     hostname: TypekMatus
     image: traefik
     logging:
@@ -489,7 +489,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
     hostname: TypekMatus
     image: lscr.io/linuxserver/unifi-controller
     logging:
@@ -555,7 +555,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
     hostname: TypekMatus
     image: louislam/uptime-kuma
     logging:
@@ -596,7 +596,7 @@ services:
       PGID: "1000"
       PUID: "1000"
       SECRET_KEY: yacht
-      TZ: #{{ tz }}
+      TZ: {{ tz }}
     hostname: TypekMatus
     image: selfhostedpro/yacht
     logging:
