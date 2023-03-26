@@ -4,7 +4,6 @@
   roles:
     - geerlingguy.pip
     - geerlingguy.docker
-    - clayman083.cluster
   vars_files:
     - credentials.yml
     - vars.yml
