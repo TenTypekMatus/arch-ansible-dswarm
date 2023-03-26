@@ -1,15 +1,12 @@
 ---
 - hosts: all
-  become: yes
-  
+  become: true
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker
   vars_files:
     - credentials.yml
-  
+    - vars.yml
   tasks:
-  - name: Setup Docker
-    ansible.builtin.import_role:
-      - geerlingguy.pip
-      - geerlingguy.docker
-  - name: Create docker swarm
-    ansible.builtin.import_playbook:
-        - roles/aur/dswarm/deploy-swarm.yml
+  - name: Setup Swarm
+    ansible.builtin.include_tasks: roles/dswarm/deploy-swarm.yml

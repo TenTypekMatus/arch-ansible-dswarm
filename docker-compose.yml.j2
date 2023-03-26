@@ -401,8 +401,8 @@ services:
     container_name: swag
     environment:
       DNSPLUGIN: ""
-      DUCKDNSTOKEN: ""
-      EMAIL: ""
+      DUCKDNSTOKEN: "{{ ddns_token }}"
+      EMAIL: "{{ email }}"
       EXTRA_DOMAINS: ""
       MAXMINDDB_LICENSE_KEY: ""
       ONLY_SUBDOMAINS: "false"
