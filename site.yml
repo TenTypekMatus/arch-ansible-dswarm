@@ -4,9 +4,7 @@
   roles:
     - geerlingguy.pip
     - geerlingguy.docker
+    - clayman083.cluster
   vars_files:
     - credentials.yml
     - vars.yml
-  tasks:
-  - name: Setup Swarm
-    ansible.builtin.include_tasks: roles/dswarm/deploy-swarm.yml
