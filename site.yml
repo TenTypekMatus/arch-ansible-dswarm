@@ -4,10 +4,8 @@
   
   vars_files:
     - credentials.yml
+  
   tasks:
-  - name: Install Ubuntu
-    ansible.builtin.import_role:
-        name: notthebee.ubuntu_autoinstall
   - name: Setup Docker
     ansible.builtin.import_role:
       - geerlingguy.pip
