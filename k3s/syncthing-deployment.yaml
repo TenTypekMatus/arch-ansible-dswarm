@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: syncthing
+  name: syncthing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: syncthing
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.28.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/compose-default: "true"
+        io.kompose.service: syncthing
+    spec:
+      containers:
+        - env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+          image: lscr.io/linuxserver/syncthing
+          name: syncthing
+          ports:
+            - containerPort: 8384
+            - containerPort: 21027
+              protocol: UDP
+            - containerPort: 22000
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/localtime
+              name: syncthing-claim0
+              readOnly: true
+            - mountPath: /config
+              name: syncthing-claim1
+            - mountPath: /storage
+              name: syncthing-claim2
+            - mountPath: /source
+              name: syncthing-claim3
+      hostname: TypekMatus
+      restartPolicy: Always
+      volumes:
+        - name: syncthing-claim0
+          persistentVolumeClaim:
+            claimName: syncthing-claim0
+            readOnly: true
+        - name: syncthing-claim1
+          persistentVolumeClaim:
+            claimName: syncthing-claim1
+        - name: syncthing-claim2
+          persistentVolumeClaim:
+            claimName: syncthing-claim2
+        - name: syncthing-claim3
+          persistentVolumeClaim:
+            claimName: syncthing-claim3
+status: {}

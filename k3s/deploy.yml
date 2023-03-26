@@ -1,0 +1,22 @@
+---
+- hosts: swarm-01
+  become: yes
+  vars_files: 
+  - credentials.yml
+  - vars.yml
+  tasks:
+  - name: Copy templated Docker compose file to the system
+    ansible.builtin.template:
+      src: docker-compose.yml.j2
+      dest: docker-compose.yml
+  - name: Install prerequsites for Docker stack
+    ansible.builtin.apt:
+      name:
+        - python3-jsondiff
+      state: present
+  - name: Start Docker stack
+    community.docker.docker_stack:
+      state: present
+      name: "{{ stack_name }}"
+      compose:
+        - docker-compose.yml

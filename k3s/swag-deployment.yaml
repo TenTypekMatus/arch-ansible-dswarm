@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: swag
+  name: swag
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: swag
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.28.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/compose-default: "true"
+        io.kompose.service: swag
+    spec:
+      containers:
+        - env:
+            - name: DNSPLUGIN
+            - name: DUCKDNSTOKEN
+              value: '{{ ddns_token }}'
+            - name: EMAIL
+              value: '{{ email }}'
+            - name: EXTRA_DOMAINS
+            - name: MAXMINDDB_LICENSE_KEY
+            - name: ONLY_SUBDOMAINS
+              value: "false"
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: SUBDOMAINS
+              value: www
+            - name: URL
+            - name: VALIDATION
+              value: http
+          image: lscr.io/linuxserver/swag
+          name: swag
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          resources: {}
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          volumeMounts:
+            - mountPath: /etc/localtime
+              name: swag-claim0
+              readOnly: true
+            - mountPath: /config
+              name: swag-claim1
+            - mountPath: /storage
+              name: swag-claim2
+      hostname: TypekMatus
+      restartPolicy: Always
+      volumes:
+        - name: swag-claim0
+          persistentVolumeClaim:
+            claimName: swag-claim0
+            readOnly: true
+        - name: swag-claim1
+          persistentVolumeClaim:
+            claimName: swag-claim1
+        - name: swag-claim2
+          persistentVolumeClaim:
+            claimName: swag-claim2
+status: {}

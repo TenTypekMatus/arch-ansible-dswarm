@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: yacht
+  name: yacht
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: yacht
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.28.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/compose-default: "true"
+        io.kompose.service: yacht
+    spec:
+      containers:
+        - env:
+            - name: ADMIN_EMAIL
+              value: admin@yacht.local
+            - name: DISABLE_AUTH
+              value: "false"
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: SECRET_KEY
+              value: yacht
+          image: selfhostedpro/yacht
+          name: yacht
+          ports:
+            - containerPort: 8000
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/localtime
+              name: yacht-claim0
+              readOnly: true
+            - mountPath: /var/run/docker.sock
+              name: yacht-claim1
+            - mountPath: /config
+              name: yacht-claim2
+            - mountPath: /storage
+              name: yacht-claim3
+      hostname: TypekMatus
+      restartPolicy: Always
+      volumes:
+        - name: yacht-claim0
+          persistentVolumeClaim:
+            claimName: yacht-claim0
+            readOnly: true
+        - name: yacht-claim1
+          persistentVolumeClaim:
+            claimName: yacht-claim1
+        - name: yacht-claim2
+          persistentVolumeClaim:
+            claimName: yacht-claim2
+        - name: yacht-claim3
+          persistentVolumeClaim:
+            claimName: yacht-claim3
+status: {}

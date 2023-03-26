@@ -12,7 +12,7 @@ services:
       SHOW_PASSWORD_HINT: "false"
       SIGNUPS_ALLOWED: "false"
       SIGNUPS_VERIFY: "false"
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
       WEBSOCKET_ENABLED: "true"
     hostname: TypekMatus
     image: vaultwarden/server
@@ -55,7 +55,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
     hostname: TypekMatus
     image: lscr.io/linuxserver/deluge
     logging:
@@ -120,7 +120,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
     image: lscr.io/linuxserver/fail2ban
     logging:
       driver: json-file
@@ -155,7 +155,7 @@ services:
   gitea:
     container_name: gitea
     environment:
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
       USER_GID: "1000"
       USER_UID: "1000"
     hostname: TypekMatus
@@ -201,7 +201,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
     hostname: TypekMatus
     image: lscr.io/linuxserver/heimdall
     logging:
@@ -243,7 +243,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
     hostname: TypekMatus
     image: lscr.io/linuxserver/jellyfin
     logging:
@@ -290,7 +290,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
     hostname: TypekMatus
     image: lscr.io/linuxserver/nextcloud
     logging:
@@ -328,73 +328,6 @@ services:
       target: /data
       bind:
         create_host_path: true
-  nzbgetvpn:
-    cap_add:
-    - NET_ADMIN
-    - SYS_MODULE
-    container_name: nzbgetvpn
-    environment:
-      ENABLE_PRIVOXY: "no"
-      LAN_NETWORK: 192.168.101.0/24
-      NAME_SERVERS: 1.1.1.1,8.8.8.8
-      PGID: "1000"
-      PUID: "1000"
-      TZ: {{ tz }}
-      VPN_CLIENT: openvpn
-      VPN_ENABLED: "yes"
-      VPN_OPTIONS: ""
-      VPN_PASS: "{{ vpn_pass }}"
-      VPN_PROV: custom
-      VPN_USER: "{{ vpn_user }}"
-    hostname: TypekMatus
-    image: jshridha/docker-nzbgetvpn
-    logging:
-      driver: json-file
-      options:
-        max-file: "10"
-        max-size: 200k
-    networks:
-      default: null
-    ports:
-    - mode: ingress
-      target: 6789
-      published: "6789"
-      protocol: tcp
-    - mode: ingress
-      target: 8118
-      published: "8118"
-      protocol: tcp
-    privileged: true
-    restart: unless-stopped
-    sysctls:
-      net.ipv4.conf.all.src_valid_mark: "1"
-    volumes:
-    - type: bind
-      source: /etc/localtime
-      target: /etc/localtime
-      read_only: true
-      bind:
-        create_host_path: true
-    - type: bind
-      source: ~/.config/appdata/nzbgetvpn
-      target: /config
-      bind:
-        create_host_path: true
-    - type: bind
-      source: ~/storage
-      target: /storage
-      bind:
-        create_host_path: true
-    - type: bind
-      source: ~/.config/appdata/.openvpn
-      target: /config/openvpn
-      bind:
-        create_host_path: true
-    - type: bind
-      source: ~/.config/appdata/.wireguard
-      target: /config/wireguard
-      bind:
-        create_host_path: true
   swag:
     cap_add:
     - NET_ADMIN
@@ -409,7 +342,7 @@ services:
       PGID: "1000"
       PUID: "1000"
       SUBDOMAINS: www
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
       URL: ""
       VALIDATION: http
     hostname: TypekMatus
@@ -453,7 +386,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
     hostname: TypekMatus
     image: lscr.io/linuxserver/syncthing
     logging:
@@ -504,7 +437,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
     hostname: TypekMatus
     image: traefik
     logging:
@@ -556,7 +489,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
     hostname: TypekMatus
     image: lscr.io/linuxserver/unifi-controller
     logging:
@@ -622,7 +555,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
     hostname: TypekMatus
     image: louislam/uptime-kuma
     logging:
@@ -663,7 +596,7 @@ services:
       PGID: "1000"
       PUID: "1000"
       SECRET_KEY: yacht
-      TZ: {{ tz }}
+      TZ: #{{ tz }}
     hostname: TypekMatus
     image: selfhostedpro/yacht
     logging:

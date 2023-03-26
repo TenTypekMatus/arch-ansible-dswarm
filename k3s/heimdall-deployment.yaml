@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: heimdall
+  name: heimdall
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: heimdall
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.28.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/compose-default: "true"
+        io.kompose.service: heimdall
+    spec:
+      containers:
+        - env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+          image: lscr.io/linuxserver/heimdall
+          name: heimdall
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/localtime
+              name: heimdall-claim0
+              readOnly: true
+            - mountPath: /config
+              name: heimdall-claim1
+            - mountPath: /storage
+              name: heimdall-claim2
+      hostname: TypekMatus
+      restartPolicy: Always
+      volumes:
+        - name: heimdall-claim0
+          persistentVolumeClaim:
+            claimName: heimdall-claim0
+            readOnly: true
+        - name: heimdall-claim1
+          persistentVolumeClaim:
+            claimName: heimdall-claim1
+        - name: heimdall-claim2
+          persistentVolumeClaim:
+            claimName: heimdall-claim2
+status: {}

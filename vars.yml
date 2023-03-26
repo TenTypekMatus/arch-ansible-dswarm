@@ -13,3 +13,4 @@ docker_group_users:
   - server
 docker_swarm_interface: "{{ ansible_default_ipv4['interface'] }}"
 stack_name: docktest
+docker_deploy_compose_template: "docker-compose.yml.j2"
