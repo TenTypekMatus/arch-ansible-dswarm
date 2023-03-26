@@ -4,6 +4,10 @@
   roles:
     - geerlingguy.pip
     - geerlingguy.docker
+    #- thomasjpfan.docker-swarm
+    - mrlesmithjr.manage-lvm
+    - mrlesmithjr.ansible-debian-autoupdates
   vars_files:
     - credentials.yml
     - vars.yml
+    

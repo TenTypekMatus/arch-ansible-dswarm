@@ -1,5 +1,6 @@
 {
     "yaml.schemas": {
-        "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": "file:///home/matus/Projects/arch-ansible-dswarm/docker-compose.yml.j2"
+        "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": "file:///home/matus/Projects/arch-ansible-dswarm/docker-compose.yml.j2",
+        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook": "file:///home/matus/Projects/arch-ansible-dswarm/deploy.yml"
     }
 }

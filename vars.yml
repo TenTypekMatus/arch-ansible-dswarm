@@ -9,3 +9,7 @@ docker_compose_version: "1.26.0"
 docker_compose_arch: "{{ ansible_architecture }}"
 docker_compose_path: /usr/local/bin/docker-compose
 docker_add_repo: true
+docker_group_users:
+  - server
+docker_swarm_interface: "{{ ansible_default_ipv4['interface'] }}"
+stack_name: docktest
