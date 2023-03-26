@@ -6,13 +6,13 @@ services:
       ADMIN_TOKEN: ""
       DATABASE_URL: data/db.sqlite3
       DISABLE_ADMIN_TOKEN: "false"
-      DOMAIN: ""
+      DOMAIN: "{{ domain }}"
       ENABLE_DB_WAL: "true"
       INVITATIONS_ALLOWED: "false"
       SHOW_PASSWORD_HINT: "false"
       SIGNUPS_ALLOWED: "false"
       SIGNUPS_VERIFY: "false"
-      TZ: America/Chicago
+      TZ: {{ tz }}
       WEBSOCKET_ENABLED: "true"
     hostname: DockSTARTer
     image: vaultwarden/server
@@ -41,12 +41,12 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/bitwarden
+      source: ~/.config/appdata/bitwarden
       target: /data
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
@@ -55,7 +55,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: America/Chicago
+      TZ: {{ tz }}
     hostname: DockSTARTer
     image: lscr.io/linuxserver/deluge
     logging:
@@ -103,12 +103,12 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/deluge
+      source: ~/.config/appdata/deluge
       target: /config
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
@@ -120,7 +120,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: America/Chicago
+      TZ: {{ tz }}
     image: lscr.io/linuxserver/fail2ban
     logging:
       driver: json-file
@@ -143,19 +143,19 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/fail2ban
+      source: ~/.config/appdata/fail2ban
       target: /config
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
   gitea:
     container_name: gitea
     environment:
-      TZ: America/Chicago
+      TZ: {{ tz }}
       USER_GID: "1000"
       USER_UID: "1000"
     hostname: DockSTARTer
@@ -187,12 +187,12 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/gitea
+      source: ~/.config/appdata/gitea
       target: /data
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
@@ -201,7 +201,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: America/Chicago
+      TZ: {{ tz }}
     hostname: DockSTARTer
     image: lscr.io/linuxserver/heimdall
     logging:
@@ -229,12 +229,12 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/heimdall
+      source: ~/.config/appdata/heimdall
       target: /config
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
@@ -243,7 +243,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: America/Chicago
+      TZ: {{ tz }}
     hostname: DockSTARTer
     image: lscr.io/linuxserver/jellyfin
     logging:
@@ -271,12 +271,12 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/jellyfin
+      source: ~/.config/appdata/jellyfin
       target: /config
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
@@ -290,7 +290,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: America/Chicago
+      TZ: {{ tz }}
     hostname: DockSTARTer
     image: lscr.io/linuxserver/nextcloud
     logging:
@@ -314,12 +314,12 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/nextcloud
+      source: ~/.config/appdata/nextcloud
       target: /config
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
@@ -339,7 +339,7 @@ services:
       NAME_SERVERS: 1.1.1.1,8.8.8.8
       PGID: "1000"
       PUID: "1000"
-      TZ: America/Chicago
+      TZ: {{ tz }}
       VPN_CLIENT: openvpn
       VPN_ENABLED: "yes"
       VPN_OPTIONS: ""
@@ -376,22 +376,22 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/nzbgetvpn
+      source: ~/.config/appdata/nzbgetvpn
       target: /config
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/.openvpn
+      source: ~/.config/appdata/.openvpn
       target: /config/openvpn
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/.wireguard
+      source: ~/.config/appdata/.wireguard
       target: /config/wireguard
       bind:
         create_host_path: true
@@ -409,7 +409,7 @@ services:
       PGID: "1000"
       PUID: "1000"
       SUBDOMAINS: www
-      TZ: America/Chicago
+      TZ: {{ tz }}
       URL: ""
       VALIDATION: http
     hostname: DockSTARTer
@@ -439,12 +439,12 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/swag
+      source: ~/.config/appdata/swag
       target: /config
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
@@ -453,7 +453,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: America/Chicago
+      TZ: {{ tz }}
     hostname: DockSTARTer
     image: lscr.io/linuxserver/syncthing
     logging:
@@ -485,12 +485,12 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/syncthing
+      source: ~/.config/appdata/syncthing
       target: /config
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
@@ -504,7 +504,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: America/Chicago
+      TZ: {{ tz }}
     hostname: DockSTARTer
     image: traefik
     logging:
@@ -530,12 +530,12 @@ services:
     restart: unless-stopped
     volumes:
     - type: bind
-      source: /home/matus/.config/appdata/traefik
+      source: ~/.config/appdata/traefik
       target: /etc/traefik
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
@@ -556,7 +556,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: America/Chicago
+      TZ: {{ tz }}
     hostname: DockSTARTer
     image: lscr.io/linuxserver/unifi-controller
     logging:
@@ -576,8 +576,8 @@ services:
       published: "6789"
       protocol: tcp
     - mode: ingress
-      target: 8080
-      published: "8080"
+      target: 6969
+      published: "6969"
       protocol: tcp
     - mode: ingress
       target: 8081
@@ -608,12 +608,12 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/unificontroller
+      source: ~/.config/appdata/unificontroller
       target: /config
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
@@ -622,7 +622,7 @@ services:
     environment:
       PGID: "1000"
       PUID: "1000"
-      TZ: America/Chicago
+      TZ: {{ tz }}
     hostname: DockSTARTer
     image: louislam/uptime-kuma
     logging:
@@ -640,12 +640,12 @@ services:
     restart: unless-stopped
     volumes:
     - type: bind
-      source: /home/matus/.config/appdata/uptimekuma
+      source: ~/.config/appdata/uptimekuma
       target: /app/data
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
@@ -663,7 +663,7 @@ services:
       PGID: "1000"
       PUID: "1000"
       SECRET_KEY: yacht
-      TZ: America/Chicago
+      TZ: {{ tz }}
     hostname: DockSTARTer
     image: selfhostedpro/yacht
     logging:
@@ -692,12 +692,12 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/.config/appdata/yacht
+      source: ~/.config/appdata/yacht
       target: /config
       bind:
         create_host_path: true
     - type: bind
-      source: /home/matus/storage
+      source: ~/storage
       target: /storage
       bind:
         create_host_path: true
