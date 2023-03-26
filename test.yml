@@ -1,0 +1,6 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Test whether the connection works
+    ansible.builtin.shell: ping -c 3 google.com
