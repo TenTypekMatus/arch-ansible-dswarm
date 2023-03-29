@@ -4,7 +4,6 @@
   roles:
     - geerlingguy.pip
     - geerlingguy.docker
-    - geerlingguy.kubernetes
     - mrlesmithjr.manage-lvm
     - mrlesmithjr.ansible-debian-autoupdates
   vars_files:
