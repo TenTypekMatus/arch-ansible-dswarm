@@ -1,4 +1,3 @@
-name: compose
 services:
   bitwarden:
     container_name: bitwarden
@@ -26,11 +25,11 @@ services:
     ports:
     - mode: ingress
       target: 80
-      published: "8013"
+      published: 8013
       protocol: tcp
     - mode: ingress
       target: 3012
-      published: "3012"
+      published: 3012      
       protocol: tcp
     restart: unless-stopped
     volumes:
@@ -68,31 +67,31 @@ services:
     ports:
     - mode: ingress
       target: 6881
-      published: "6881"
+      published: 6881      
       protocol: tcp
     - mode: ingress
       target: 6881
-      published: "6881"
+      published: 6881      
       protocol: udp
     - mode: ingress
       target: 8112
-      published: "8112"
+      published: 8112      
       protocol: tcp
     - mode: ingress
       target: 51413
-      published: "51413"
+      published: 5141
       protocol: tcp
     - mode: ingress
       target: 51413
-      published: "51413"
+      published: 5141
       protocol: udp
     - mode: ingress
       target: 58846
-      published: "58846"
+      published: 5884
       protocol: tcp
     - mode: ingress
       target: 58946
-      published: "58946"
+      published: 5894
       protocol: tcp
     restart: unless-stopped
     volumes:
@@ -170,7 +169,7 @@ services:
     ports:
     - mode: ingress
       target: 3000
-      published: "3000"
+      published: 3000      
       protocol: tcp
     restart: unless-stopped
     volumes:
@@ -214,11 +213,11 @@ services:
     ports:
     - mode: ingress
       target: 80
-      published: "8002"
+      published: 8002      
       protocol: tcp
     - mode: ingress
       target: 443
-      published: "447"
+      published: 447     
       protocol: tcp
     restart: unless-stopped
     volumes:
@@ -256,11 +255,11 @@ services:
     ports:
     - mode: ingress
       target: 8096
-      published: "8096"
+      published: 8096      
       protocol: tcp
     - mode: ingress
       target: 8920
-      published: "8920"
+      published: 8920      
       protocol: tcp
     restart: unless-stopped
     volumes:
@@ -303,7 +302,7 @@ services:
     ports:
     - mode: ingress
       target: 443
-      published: "444"
+      published: 444   
       protocol: tcp
     restart: unless-stopped
     volumes:
@@ -328,59 +327,6 @@ services:
       target: /data
       bind:
         create_host_path: true
-  swag:
-    cap_add:
-    - NET_ADMIN
-    container_name: swag
-    environment:
-      DNSPLUGIN: ""
-      DUCKDNSTOKEN: "{{ ddns_token }}"
-      EMAIL: "{{ email }}"
-      EXTRA_DOMAINS: ""
-      MAXMINDDB_LICENSE_KEY: ""
-      ONLY_SUBDOMAINS: "false"
-      PGID: "1000"
-      PUID: "1000"
-      SUBDOMAINS: www
-      TZ: {{ tz }}
-      URL: ""
-      VALIDATION: http
-    hostname: TypekMatus
-    image: lscr.io/linuxserver/swag
-    logging:
-      driver: json-file
-      options:
-        max-file: "10"
-        max-size: 200k
-    networks:
-      default: null
-    ports:
-    - mode: ingress
-      target: 80
-      published: "80"
-      protocol: tcp
-    - mode: ingress
-      target: 443
-      published: "443"
-      protocol: tcp
-    restart: unless-stopped
-    volumes:
-    - type: bind
-      source: /etc/localtime
-      target: /etc/localtime
-      read_only: true
-      bind:
-        create_host_path: true
-    - type: bind
-      source: ~/.config/appdata/swag
-      target: /config
-      bind:
-        create_host_path: true
-    - type: bind
-      source: ~/storage
-      target: /storage
-      bind:
-        create_host_path: true
   syncthing:
     container_name: syncthing
     environment:
@@ -399,15 +345,15 @@ services:
     ports:
     - mode: ingress
       target: 8384
-      published: "8384"
+      published: 8384      
       protocol: tcp
     - mode: ingress
       target: 21027
-      published: "21027"
+      published: 2102
       protocol: udp
     - mode: ingress
       target: 22000
-      published: "22000"
+      published: 2200
       protocol: tcp
     restart: unless-stopped
     volumes:
@@ -450,15 +396,15 @@ services:
     ports:
     - mode: ingress
       target: 80
-      published: "80"
+      published: 80
       protocol: tcp
     - mode: ingress
       target: 443
-      published: "443"
+      published: 443    
       protocol: tcp
     - mode: ingress
       target: 8080
-      published: "8080"
+      published: 8080      
       protocol: tcp
     restart: unless-stopped
     volumes:
@@ -502,35 +448,35 @@ services:
     ports:
     - mode: ingress
       target: 3478
-      published: "3478"
+      published: 3478      
       protocol: udp
     - mode: ingress
       target: 6789
-      published: "6789"
+      published: 6789      
       protocol: tcp
     - mode: ingress
       target: 6969
-      published: "6969"
+      published: 6969      
       protocol: tcp
     - mode: ingress
       target: 8081
-      published: "8081"
+      published: 8081      
       protocol: tcp
     - mode: ingress
       target: 8443
-      published: "8443"
+      published: 8443      
       protocol: tcp
     - mode: ingress
       target: 8843
-      published: "8843"
+      published: 8843      
       protocol: tcp
     - mode: ingress
       target: 8880
-      published: "8880"
+      published: 8880      
       protocol: tcp
     - mode: ingress
       target: 10001
-      published: "10001"
+      published: 1000
       protocol: udp
     restart: unless-stopped
     volumes:
@@ -550,6 +496,7 @@ services:
       target: /storage
       bind:
         create_host_path: true
+  
   uptimekuma:
     container_name: uptimekuma
     environment:
@@ -568,7 +515,7 @@ services:
     ports:
     - mode: ingress
       target: 3001
-      published: "3001"
+      published: 3001      
       protocol: tcp
     restart: unless-stopped
     volumes:
@@ -609,7 +556,7 @@ services:
     ports:
     - mode: ingress
       target: 8000
-      published: "8000"
+      published: 8000      
       protocol: tcp
     restart: unless-stopped
     volumes:
@@ -634,6 +581,3 @@ services:
       target: /storage
       bind:
         create_host_path: true
-networks:
-  default:
-    name: compose_default
