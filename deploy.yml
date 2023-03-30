@@ -11,11 +11,6 @@
       dest: docker-compose.yml
   - name: Setup Swarm
     ansible.builtin.import_playbook:
-      - tasks/groups-workers.yml
-      - tasks/groups.yml
-      - tasks/join-token.yml
-      - tasks/manager-nodes.yml
-      - tasks/worker-nodes.yml
   - name: Install prerequsites for Docker stack
     ansible.builtin.apt:
       name:

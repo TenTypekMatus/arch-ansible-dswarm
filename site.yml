@@ -4,11 +4,9 @@
   roles:
     - geerlingguy.pip
     - geerlingguy.docker
+    - thomasjpfan.docker-swarm
     - mrlesmithjr.manage-lvm
     - mrlesmithjr.ansible-debian-autoupdates
   vars_files:
     - credentials.yml
     - vars.yml
-  tasks:
-  - name: Run another playbook
-    ansible.builtin.import_playbook: deploy.yml
