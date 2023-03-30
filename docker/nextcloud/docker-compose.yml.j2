@@ -1,0 +1,43 @@
+nextcloud:
+    container_name: nextcloud
+    environment:
+      PGID: "1000"
+      PUID: "1000"
+      TZ: {{ tz }}
+    hostname: TypekMatus
+    image: lscr.io/linuxserver/nextcloud
+    logging:
+      driver: json-file
+      options:
+        max-file: "10"
+        max-size: 200k
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 443
+      published: "444"
+      protocol: tcp
+    restart: unless-stopped
+    volumes:
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: ~/.config/appdata/nextcloud
+      target: /config
+      bind:
+        create_host_path: true
+    - type: bind
+      source: ~/storage
+      target: /storage
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /mnt/nextcloud
+      target: /data
+      bind:
+        create_host_path: true

@@ -9,13 +9,14 @@
     ansible.builtin.template:
       src: docker-compose.yml.j2
       dest: docker-compose.yml
-  - name: Setup Swarm
-    ansible.builtin.import_playbook:
+      mode: "0644"
+
   - name: Install prerequsites for Docker stack
     ansible.builtin.apt:
       name:
         - python3-jsondiff
       state: present
+
   - name: Start Docker stack
     community.docker.docker_stack:
       state: present
