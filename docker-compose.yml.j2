@@ -1,3 +1,9 @@
+version: "3"
+
+networks:
+  all:
+    driver: overlay
+
 services:
   bitwarden:
     container_name: bitwarden
@@ -23,11 +29,11 @@ services:
     networks:
       default: null
     ports:
-    - mode: ingress
+      mode: host
       target: 80
       published: 8013
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 3012
       published: 3012      
       protocol: tcp
@@ -65,31 +71,31 @@ services:
     networks:
       default: null
     ports:
-    - mode: ingress
+      mode: host
       target: 6881
       published: 6881      
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 6881
       published: 6881      
       protocol: udp
-    - mode: ingress
+      mode: host
       target: 8112
       published: 8112      
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 51413
       published: 5141
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 51413
       published: 5141
       protocol: udp
-    - mode: ingress
+      mode: host
       target: 58846
       published: 5884
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 58946
       published: 5894
       protocol: tcp
@@ -167,7 +173,7 @@ services:
     networks:
       default: null
     ports:
-    - mode: ingress
+      mode: host
       target: 3000
       published: 3000      
       protocol: tcp
@@ -211,11 +217,11 @@ services:
     networks:
       default: null
     ports:
-    - mode: ingress
+      mode: host
       target: 80
       published: 8002      
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 443
       published: 447     
       protocol: tcp
@@ -253,11 +259,11 @@ services:
     networks:
       default: null
     ports:
-    - mode: ingress
+      mode: host
       target: 8096
       published: 8096      
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 8920
       published: 8920      
       protocol: tcp
@@ -300,7 +306,7 @@ services:
     networks:
       default: null
     ports:
-    - mode: ingress
+      mode: host
       target: 443
       published: 444   
       protocol: tcp
@@ -327,109 +333,6 @@ services:
       target: /data
       bind:
         create_host_path: true
-  syncthing:
-    container_name: syncthing
-    environment:
-      PGID: "1000"
-      PUID: "1000"
-      TZ: {{ tz }}
-    hostname: TypekMatus
-    image: lscr.io/linuxserver/syncthing
-    logging:
-      driver: json-file
-      options:
-        max-file: "10"
-        max-size: 200k
-    networks:
-      default: null
-    ports:
-    - mode: ingress
-      target: 8384
-      published: 8384      
-      protocol: tcp
-    - mode: ingress
-      target: 21027
-      published: 2102
-      protocol: udp
-    - mode: ingress
-      target: 22000
-      published: 2200
-      protocol: tcp
-    restart: unless-stopped
-    volumes:
-    - type: bind
-      source: /etc/localtime
-      target: /etc/localtime
-      read_only: true
-      bind:
-        create_host_path: true
-    - type: bind
-      source: ~/.config/appdata/syncthing
-      target: /config
-      bind:
-        create_host_path: true
-    - type: bind
-      source: ~/storage
-      target: /storage
-      bind:
-        create_host_path: true
-    - type: bind
-      source: /mnt/syncthing
-      target: /source
-      bind:
-        create_host_path: true
-  traefik:
-    container_name: traefik
-    environment:
-      PGID: "1000"
-      PUID: "1000"
-      TZ: {{ tz }}
-    hostname: TypekMatus
-    image: traefik
-    logging:
-      driver: json-file
-      options:
-        max-file: "10"
-        max-size: 200k
-    networks:
-      default: null
-    ports:
-    - mode: ingress
-      target: 80
-      published: 80
-      protocol: tcp
-    - mode: ingress
-      target: 443
-      published: 443    
-      protocol: tcp
-    - mode: ingress
-      target: 8080
-      published: 8080      
-      protocol: tcp
-    restart: unless-stopped
-    volumes:
-    - type: bind
-      source: ~/.config/appdata/traefik
-      target: /etc/traefik
-      bind:
-        create_host_path: true
-    - type: bind
-      source: ~/storage
-      target: /storage
-      bind:
-        create_host_path: true
-    - type: bind
-      source: /etc/localtime
-      target: /etc/localtime
-      read_only: true
-      bind:
-        create_host_path: true
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
-      read_only: true
-      bind:
-        create_host_path: true
   unificontroller:
     container_name: unificontroller
     environment:
@@ -446,35 +349,35 @@ services:
     networks:
       default: null
     ports:
-    - mode: ingress
+      mode: host
       target: 3478
       published: 3478      
       protocol: udp
-    - mode: ingress
+      mode: host
       target: 6789
       published: 6789      
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 6969
       published: 6969      
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 8081
       published: 8081      
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 8443
       published: 8443      
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 8843
       published: 8843      
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 8880
       published: 8880      
       protocol: tcp
-    - mode: ingress
+      mode: host
       target: 10001
       published: 1000
       protocol: udp
@@ -513,7 +416,7 @@ services:
     networks:
       default: null
     ports:
-    - mode: ingress
+      mode: host
       target: 3001
       published: 3001      
       protocol: tcp
@@ -535,49 +438,12 @@ services:
       read_only: true
       bind:
         create_host_path: true
-  yacht:
-    container_name: yacht
-    environment:
-      ADMIN_EMAIL: admin@yacht.local
-      DISABLE_AUTH: "false"
-      PGID: "1000"
-      PUID: "1000"
-      SECRET_KEY: yacht
-      TZ: {{ tz }}
-    hostname: TypekMatus
-    image: selfhostedpro/yacht
-    logging:
-      driver: json-file
-      options:
-        max-file: "10"
-        max-size: 200k
-    networks:
-      default: null
-    ports:
-    - mode: ingress
-      target: 8000
-      published: 8000      
-      protocol: tcp
-    restart: unless-stopped
-    volumes:
-    - type: bind
-      source: /etc/localtime
-      target: /etc/localtime
-      read_only: true
-      bind:
-        create_host_path: true
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
-      bind:
-        create_host_path: true
-    - type: bind
-      source: ~/.config/appdata/yacht
-      target: /config
-      bind:
-        create_host_path: true
-    - type: bind
-      source: ~/storage
-      target: /storage
-      bind:
-        create_host_path: true
+ports:
+  - "8000:8000"
+  - "3001:3001"
+  - "8096:8920"
+  - "8843:8843"
+  - "8880:8880"
+  - "10001:1000"
+  - "6969:6969"
+  - 

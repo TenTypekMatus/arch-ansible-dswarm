@@ -3,7 +3,9 @@
   become: true
   roles:
     - robertdebock.update
+    - geerlingguy.security
     - geerlingguy.pip
+    - artis3n.tailscale
     - geerlingguy.docker
     - thomasjpfan.docker-swarm
     - mrlesmithjr.manage-lvm

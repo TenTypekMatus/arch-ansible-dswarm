@@ -1,6 +1,9 @@
 ---
-- hosts: swarm-01
+- hosts: all
   become: yes
+  roles:
+    - ohing504.swarmpit
+    - inhumantsar.traefik-swarm
   vars_files: 
   - credentials.yml
   - vars.yml
@@ -16,6 +19,10 @@
       name:
         - python3-jsondiff
       state: present
+  - name: Remove stack
+    community.docker.docker_stack:
+      name: portainer
+      state: absent
 
   - name: Start Docker stack
     community.docker.docker_stack:

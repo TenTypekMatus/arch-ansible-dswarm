@@ -17,4 +17,5 @@ docker_deploy_compose_template: "docker-compose.yml.j2"
 pip_install_packages:
   # Specify names and versions.
   - docker
-docker_swarm_network_interface: "enp1s0"
+docker_swarm_network_interface: "tailscale0"
+tailscale_args: "--ssh"
