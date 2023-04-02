@@ -5,6 +5,7 @@
     - robertdebock.update
     - geerlingguy.security
     - geerlingguy.pip
+    - geerlingguy.glusterfs
     - artis3n.tailscale
     - geerlingguy.docker
     - thomasjpfan.docker-swarm

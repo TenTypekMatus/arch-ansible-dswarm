@@ -8,9 +8,6 @@
   - credentials.yml
   - vars.yml
   tasks:
-  - name: Copy templated Docker compose file to the system.
-    ansible.builtin.rsync:
-
   - name: Install prerequsites for Docker stack
     ansible.builtin.apt:
       name:

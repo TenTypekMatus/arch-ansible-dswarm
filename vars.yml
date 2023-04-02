@@ -1,3 +1,6 @@
+###########################
+# Start of Docker section #
+###########################
 docker_edition: 'ce'
 docker_packages:
     - "docker-{{ docker_edition }}"
@@ -18,4 +21,26 @@ pip_install_packages:
   # Specify names and versions.
   - docker
 docker_swarm_network_interface: "tailscale0"
+#########################
+# End of Docker section #
+#########################
+
+##############################
+# Start of Tailscale section #
+##############################
 tailscale_args: "--ssh"
+
+############################
+# End of Tailscale section #
+############################
+
+##############################
+# Start of GlusterFS section #
+##############################
+
+glusterfs_ppa_use: true
+glusterfs_ppa_version: "LATEST"
+
+############################
+# End of GlusterFS section #
+############################
