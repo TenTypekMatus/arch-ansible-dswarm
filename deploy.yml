@@ -9,10 +9,7 @@
   - vars.yml
   tasks:
   - name: Copy templated Docker compose file to the system.
-    ansible.builtin.template:
-      src: docker-compose.yml.j2
-      dest: docker-compose.yml
-      mode: "0644"
+    ansible.builtin.rsync:
 
   - name: Install prerequsites for Docker stack
     ansible.builtin.apt:
