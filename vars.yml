@@ -38,7 +38,7 @@ tailscale_args: "--ssh"
 # Start of GlusterFS section #
 ##############################
 
-glusterfs_ppa_use: true
+glusterfs_ppa_use: false
 glusterfs_ppa_version: "LATEST"
 
 ############################
