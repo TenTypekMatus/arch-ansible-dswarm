@@ -10,6 +10,8 @@
     - geerlingguy.docker
     - thomasjpfan.docker-swarm
     - mrlesmithjr.manage-lvm
+    - ohing504.swarmpit
+    - inhumantsar.traefik-swarm
   vars_files:
     - credentials.yml
     - vars.yml
