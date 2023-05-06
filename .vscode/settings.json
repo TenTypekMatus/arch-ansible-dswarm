@@ -5,6 +5,9 @@
             "file:///home/matus/Projects/arch-ansible-dswarm/site.yml",
             "file:///home/matus/Projects/arch-ansible-dswarm/deploy.yml"
         ],
-        "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": "file:///home/matus/Projects/arch-ansible-dswarm/docker/swarm_node.rules.yml"
+        "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": [
+            "file:///home/matus/Projects/arch-ansible-dswarm/docker/swarm_node.rules.yml",
+            "file:///home/matus/Projects/arch-ansible-dswarm/svc/stack.yml"
+        ]
     }
 }
