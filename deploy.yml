@@ -13,7 +13,13 @@
       name:
         - python3-jsondiff
       state: present
-
+  - name: Copy templated stack to host
+    ansible.builtin.template:
+      src: svc/stack.yml.j2
+      dest: docker-compose.yml
+      mode: 0644
+      state: touch
+      
   - name: Start Docker stack
     community.docker.docker_stack:
       state: present
