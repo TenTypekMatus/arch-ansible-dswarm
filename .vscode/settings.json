@@ -3,11 +3,14 @@
         "https://raw.githubusercontent.com/docker/compose/master/compose/config/config_schema_v1.json": "file:///home/matus/Projects/arch-ansible-dswarm/docker-compose.yml.j2",
         "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook": [
             "file:///home/matus/Projects/arch-ansible-dswarm/site.yml",
-            "file:///home/matus/Projects/arch-ansible-dswarm/deploy.yml"
+            "file:///home/matus/Projects/arch-ansible-dswarm/deploy.yml",
+            "file:///home/matus/proj/arch-ansible-dswarm/deploy.yml",
+            "file:///home/matus/proj/arch-ansible-dswarm/autorice.yml"
         ],
         "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": [
             "file:///home/matus/Projects/arch-ansible-dswarm/docker/swarm_node.rules.yml",
             "file:///home/matus/Projects/arch-ansible-dswarm/svc/stack.yml"
         ]
-    }
+    },
+    "ansible.python.interpreterPath": "/home/matus/.nix-profile/bin/python"
 }

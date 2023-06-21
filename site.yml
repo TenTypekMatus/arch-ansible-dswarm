@@ -1,6 +1,7 @@
 ---
 - hosts: all
   become: true
+  
   roles:
     - robertdebock.update
     - geerlingguy.security
@@ -8,10 +9,21 @@
     - geerlingguy.glusterfs
     - artis3n.tailscale
     - geerlingguy.docker
-    - thomasjpfan.docker-swarm
     - mrlesmithjr.manage-lvm
-    - ohing504.swarmpit
-    - inhumantsar.traefik-swarm
+  
   vars_files:
     - credentials.yml
     - vars.yml
+  
+  tasks: 
+  - name: Copy templated stack to host
+    ansible.builtin.template:
+      src: svc/stack.yml.j2
+      dest: docker-compose.yml
+      mode: 0644
+      state: touch
+      
+  - name: Start Docker stack
+    ansible.builtin.shell:
+      docker compose up -d
+
