@@ -9,4 +9,4 @@ roles:
     - artis3n.tailscale
     - geerlingguy.docker
     - mrlesmithjr.mdadm
-
+    - oefenweb.keepalived

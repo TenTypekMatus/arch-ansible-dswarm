@@ -26,4 +26,3 @@
   - name: Start Docker compose file
     ansible.builtin.shell:
       docker compose up -d
-
