@@ -26,3 +26,7 @@
   - name: Start Docker compose file
     ansible.builtin.shell:
       docker compose up -d
+  
+  - name: rice server
+    ansible.builtin.import_tasks:
+      - autorice.yml

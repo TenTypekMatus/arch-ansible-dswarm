@@ -9,7 +9,7 @@
     
     - name: Install exa and starship through Cargo
       community.general.cargo:
-        name: {{ item }}
+        name: "{{ item }}"
         with_items:
           - exa
           - starship
