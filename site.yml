@@ -9,7 +9,7 @@
     - geerlingguy.glusterfs
     - artis3n.tailscale
     - geerlingguy.docker
-    - mrlesmithjr.manage-lvm
+    - mrlesmithjr.mdadm
   
   vars_files:
     - credentials.yml
@@ -23,7 +23,7 @@
       mode: 0644
       state: touch
       
-  - name: Start Docker stack
+  - name: Start Docker compose file
     ansible.builtin.shell:
       docker compose up -d
 

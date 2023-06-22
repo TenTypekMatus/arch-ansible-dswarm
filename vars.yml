@@ -18,9 +18,7 @@ docker_swarm_interface: "{{ ansible_default_ipv4['interface'] }}"
 stack_name: docktest
 docker_deploy_compose_template: "docker-compose.yml.j2"
 pip_install_packages:
-  # Specify names and versions.
   - docker
-docker_swarm_network_interface: "{{ ansible_default_ipv4['interface'] }}"
 #########################
 # End of Docker section #
 #########################
@@ -38,9 +36,10 @@ tailscale_args: "--ssh"
 # Start of GlusterFS section #
 ##############################
 
-glusterfs_ppa_use: true
-glusterfs_ppa_version: "LATEST"
-
 ############################
 # End of GlusterFS section #
 ############################
+
+cargo_pkg:
+  - exa
+  - starship

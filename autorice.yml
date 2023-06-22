@@ -1,14 +1,24 @@
 ---
 - hosts: all
   become: yes
+  roles:
+    - robertdebock.cargo
+    - robertdebock.bootstrap
+    - robertdebock.buildtools
   tasks:
-    - name: Install fish through system package manager
-      ansible.builtin.package:
-        name: fish
-        state: present
     
-    - name: Setup Cargo
-      ansible.builtin.import_role:
-        - robertdebock.cargo
-    
-    
+    - name: Install exa ansd starship through Cargo
+     community.general.cargo:
+      name: {{ item }}
+      with_items:
+        - exa
+        - starship
+
+    - name: Setup aliases for ls
+      ansible.builtin.shell: |
+        echo 'eval "$(starship init bash)"' >> ~/.bashrc
+        echo 'alias ls="exa --icons -lhi --git"' >> ~/.config/fish/config.fish
+   
+    - name: Say done
+      ansible.builtin.debug:
+        msg: Done

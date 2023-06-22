@@ -1,0 +1,12 @@
+roles:
+    - robertdebock.cargo
+    - robertdebock.bootstrap
+    - robertdebock.buildtools
+    - robertdebock.update
+    - geerlingguy.security
+    - geerlingguy.pip
+    - geerlingguy.glusterfs
+    - artis3n.tailscale
+    - geerlingguy.docker
+    - mrlesmithjr.mdadm
+
