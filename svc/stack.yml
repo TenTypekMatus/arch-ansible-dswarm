@@ -182,4 +182,5 @@ services:
       - /mnt/data/nextcloud:/data
     ports:
       - 80:81
-      - 443:444
+      - 444:444
+      - 6969:690
