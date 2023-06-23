@@ -1,32 +1,25 @@
 ---
 - hosts: all
   become: true
-  
+
   roles:
     - robertdebock.update
     - geerlingguy.security
     - geerlingguy.pip
-    - geerlingguy.glusterfs
     - artis3n.tailscale
     - geerlingguy.docker
-    - mrlesmithjr.mdadm
-  
+    - mrlesmithjr.manage-lvm
+
   vars_files:
     - credentials.yml
     - vars.yml
-  
-  tasks: 
-  - name: Copy templated stack to host
-    ansible.builtin.template:
-      src: svc/stack.yml.j2
-      dest: docker-compose.yml
-      mode: 0644
-      state: touch
-      
-  - name: Start Docker compose file
-    ansible.builtin.shell:
-      docker compose up -d
-  
-  - name: rice server
-    ansible.builtin.import_tasks:
-      - autorice.yml
+
+  tasks:
+    - name: Copy templated stack to host
+      ansible.builtin.copy:
+        src: svc/stack.yml
+        dest: docker-compose.yml
+
+    - name: Start Docker compose file
+      ansible.builtin.shell:
+        docker compose up -d

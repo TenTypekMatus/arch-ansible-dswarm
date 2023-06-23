@@ -5,8 +5,7 @@ roles:
     - robertdebock.update
     - geerlingguy.security
     - geerlingguy.pip
-    - geerlingguy.glusterfs
     - artis3n.tailscale
     - geerlingguy.docker
-    - mrlesmithjr.mdadm
+    - mrlesmithjr.manage-lvm
     - oefenweb.keepalived

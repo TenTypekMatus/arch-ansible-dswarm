@@ -9,7 +9,8 @@
         ],
         "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": [
             "file:///home/matus/Projects/arch-ansible-dswarm/docker/swarm_node.rules.yml",
-            "file:///home/matus/Projects/arch-ansible-dswarm/svc/stack.yml"
+            "file:///home/matus/Projects/arch-ansible-dswarm/svc/stack.yml",
+            "file:///home/matus/proj/arch-ansible-dswarm/svc/stack.yml"
         ],
         "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/vars.json": "file:///home/matus/proj/arch-ansible-dswarm/vars.yml"
     },

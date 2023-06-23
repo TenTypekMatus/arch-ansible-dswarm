@@ -6,7 +6,7 @@
     - robertdebock.bootstrap
     - robertdebock.buildtools
   tasks:
-    
+
     - name: Install exa and starship through Cargo
       community.general.cargo:
         name: "{{ item }}"
@@ -18,7 +18,7 @@
       ansible.builtin.shell: |
         echo 'eval "$(starship init bash)"' >> ~/.bashrc
         echo 'alias ls="exa --icons -lhi --git"' >> ~/.config/fish/config.fish
-   
+
     - name: Say done
       ansible.builtin.debug:
         msg: Done
