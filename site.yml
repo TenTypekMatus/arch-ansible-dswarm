@@ -9,6 +9,8 @@
     - artis3n.tailscale
     - geerlingguy.docker
     - mrlesmithjr.manage-lvm
+    - alecunsolo.cockpit
+    - oefenweb.keepalived
 
   vars_files:
     - credentials.yml

@@ -9,3 +9,7 @@ roles:
     - geerlingguy.docker
     - mrlesmithjr.manage-lvm
     - oefenweb.keepalived
+    - alecunsolo.cockpit
+
+collections:
+  - community.general

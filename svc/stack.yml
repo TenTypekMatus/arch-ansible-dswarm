@@ -1,6 +1,7 @@
 version: "3.9"
 name: server
 services:
+
   gitea:
     container_name: gitea
     environment:
@@ -40,6 +41,7 @@ services:
       target: /storage
       bind:
         create_host_path: true
+  
   heimdall:
     container_name: heimdall
     environment:
@@ -82,6 +84,7 @@ services:
       target: /storage
       bind:
         create_host_path: true
+  
   homeassistant:
     container_name: homeassistant
     environment:
@@ -118,6 +121,7 @@ services:
       target: /storage
       bind:
         create_host_path: true
+  
   jellyfin:
     container_name: jellyfin
     environment:
@@ -165,22 +169,31 @@ services:
       target: /transcode
       bind:
         create_host_path: true
+
   nextcloud:
-    image: lscr.io/linuxserver/nextcloud:latest
-    container_name: nextcloud
-    environment:
-      - PGID=1000
-      - PUID=1000
-      - TZ=Europe/Bratislava
-    logging:
-      driver: json-file
-    restart: unless-stopped
-    volumes:
+      image: lscr.io/linuxserver/nextcloud:latest
+      container_name: nextcloud
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Europe/Bratislava
+      volumes:
       - /etc/localtime:/etc/localtime:ro
       - /mnt/config/nextcloud:/config
       - /mnt/storage/nextcloud:/storage
       - /mnt/data/nextcloud:/data
-    ports:
-      - 80:81
-      - 444:444
-      - 6969:690
+      ports:
+        - 443:443
+      restart: unless-stopped
+  yacht:
+    image: selfhostedpro/yacht:devel
+    restart: unless-stopped
+    networks:
+      - traefik_network
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - "SECRET_KEY=my_secret_key"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - ./config:/config
