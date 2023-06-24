@@ -8,9 +8,8 @@
     - geerlingguy.pip
     - artis3n.tailscale
     - geerlingguy.docker
-    - mrlesmithjr.manage-lvm
+#    - mrlesmithjr.mdadm
     - alecunsolo.cockpit
-    - oefenweb.keepalived
 
   vars_files:
     - credentials.yml

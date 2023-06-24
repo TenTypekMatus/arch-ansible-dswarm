@@ -188,12 +188,19 @@ services:
   yacht:
     image: selfhostedpro/yacht:devel
     restart: unless-stopped
-    networks:
-      - traefik_network
     environment:
       - PUID=1000
       - PGID=1000
-      - "SECRET_KEY=my_secret_key"
+    ports:
+      - 8000:8000
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - ./config:/config
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    volumes:
+      - ./uptime-kuma-data:/app/data
+    ports:
+      - 3001:3001  # <Host Port>:<Container Port>
+    restart: unless-stopped
