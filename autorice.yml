@@ -17,8 +17,7 @@
     - name: Setup aliases for ls
       ansible.builtin.shell: |
         echo 'eval "$(starship init bash)"' >> ~/.bashrc
-        echo 'alias ls="exa --icons -lhi --git"' >> ~/.config/fish/config.fish
-
+        echo 'alias ls="exa --icons -lhi --git"' >> ~/.bashrc
     - name: Say done
       ansible.builtin.debug:
         msg: Done
