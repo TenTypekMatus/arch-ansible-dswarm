@@ -14,6 +14,19 @@
     - vars.yml
   tasks:
     - name: Copy templated stack to host
+      hosts: matra
+      ansible.builtin.copy:
+        src: svc/stack.yml
+        dest: docker-compose.yml
+
+    - name: Copy templated stack to host
+      hosts: fatra
+      ansible.builtin.copy:
+        src: svc/stack.yml
+        dest: docker-compose.yml
+
+    - name: Copy templated stack to host
+      hosts: fatra
       ansible.builtin.copy:
         src: svc/stack.yml
         dest: docker-compose.yml
