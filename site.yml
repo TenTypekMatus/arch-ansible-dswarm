@@ -13,24 +13,24 @@
     - credentials.yml
     - vars.yml
   tasks:
-    - name: Copy templated stack to host
+    - name: matra | Copy templated stack to host
       hosts: matra
       ansible.builtin.copy:
         src: svc/stack.yml
         dest: docker-compose.yml
 
-    - name: Copy templated stack to host
+    - name: matra | Copy templated stack to host
+      hosts: tatra
+      ansible.builtin.copy:
+        src: svc/stack.yml
+        dest: docker-compose.yml
+
+    - name: fatra | Copy templated stack to host 
       hosts: fatra
       ansible.builtin.copy:
         src: svc/stack.yml
         dest: docker-compose.yml
 
-    - name: Copy templated stack to host
-      hosts: fatra
-      ansible.builtin.copy:
-        src: svc/stack.yml
-        dest: docker-compose.yml
-
-    - name: Start Docker compose file
+    - name: all | Start Docker compose file
       ansible.builtin.shell: |
         docker compose up -d
