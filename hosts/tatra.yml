@@ -1,0 +1,14 @@
+---
+- hosts: tatra
+  become: true
+  
+  tasks:
+    - name: Copy templated stack to host
+      hosts: tatra
+      ansible.builtin.copy:
+        src: ../svc/mediaserver.yml
+        dest: docker-compose.yml
+
+    - name: Start Docker compose file
+      ansible.builtin.shell: |
+        docker compose up -d

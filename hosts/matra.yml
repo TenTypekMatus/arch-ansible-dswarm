@@ -1,0 +1,14 @@
+---
+- hosts: matra
+  become: true
+
+  tasks:
+    - name: Copy templated stack to host
+      hosts: matra
+      ansible.builtin.copy:
+        src: ../svc/fileserver.yml
+        dest: docker-compose.yml
+
+    - name: Start Docker compose file
+      ansible.builtin.shell: |
+        docker compose up -d
