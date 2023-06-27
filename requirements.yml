@@ -8,5 +8,6 @@ roles:
     - artis3n.tailscale
     - geerlingguy.docker
     - alecunsolo.cockpit
+
 collections:
   - community.general
