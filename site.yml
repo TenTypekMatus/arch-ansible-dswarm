@@ -10,7 +10,7 @@
     - geerlingguy.docker
 #    - mrlesmithjr.mdadm
     - alecunsolo.cockpit
-
+    - tigattack.mergerfs 
   vars_files:
     - credentials.yml
     - vars.yml
