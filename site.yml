@@ -8,7 +8,6 @@
     - geerlingguy.pip
     - artis3n.tailscale
     - geerlingguy.docker
-#    - mrlesmithjr.mdadm
     - alecunsolo.cockpit
     - tigattack.mergerfs 
   vars_files:
