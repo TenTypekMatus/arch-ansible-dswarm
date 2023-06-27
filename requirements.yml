@@ -7,8 +7,6 @@ roles:
     - geerlingguy.pip
     - artis3n.tailscale
     - geerlingguy.docker
-    - oefenweb.keepalived
     - alecunsolo.cockpit
-    - mrlesmithjr.manage_lvm
 collections:
   - community.general
