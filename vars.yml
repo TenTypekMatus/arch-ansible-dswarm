@@ -1,6 +1,3 @@
-###########################
-# Start of Docker section #
-###########################
 docker_edition: 'ce'
 docker_packages:
     - "docker-{{ docker_edition }}"
@@ -13,50 +10,10 @@ docker_compose_arch: "{{ ansible_architecture }}"
 docker_compose_path: /usr/local/bin/docker-compose
 docker_add_repo: true
 docker_group_users:
-  - server
-docker_swarm_interface: "{{ ansible_default_ipv4['interface'] }}"
-stack_name: docktest
-docker_deploy_compose_template: "docker-compose.yml.j2"
+  - matus
 pip_install_packages:
   - docker
-#########################
-# End of Docker section #
-#########################
-
-##############################
-# Start of Tailscale section #
-##############################
 tailscale_args: "--ssh"
-
-############################
-# End of Tailscale section #
-############################
-
-##############################
-# Start of GlusterFS section #
-##############################
-
-############################
-# End of GlusterFS section #
-############################
-
 cargo_pkg:
   - exa
   - starship
-pvresize_to_max: false
-lvm_groups: # DO NOT TRY THIS AT HOME!!! LVM runs RAID0 by default and I know what I'm doing
- - vgname: data 
-   disks:
-     - /dev/vdb
-     - /dev/vdc
-#   # defines if VG should exist or be removed
-#   # true or false
-   create: true
-   lvnames:
-      - lvname: docker_1
-        size: 100%FREE
-        create: true
-        filesystem: xfs
-        fsopts: -n ftype=1
-        mount: true
-        mntp: /mnt

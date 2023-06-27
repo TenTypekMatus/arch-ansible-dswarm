@@ -1,0 +1,73 @@
+version: "3.9"
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - CLI_ARGS= #optional
+    volumes:
+      - /path/to/appdata/config:/config
+      - /path/to/backups:/backups
+      - /path/to/source:/source
+    ports:
+      - 8200:8200
+    restart: unless-stopped
+  homeassistant:
+    container_name: homeassistant
+    environment:
+      TZ: Europe/Bratislava
+    hostname: DockSTARTer
+    image: homeassistant/home-assistant
+    logging:
+      driver: json-file
+      options:
+        max-file: 10
+        max-size: 200k
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 8123
+      published: 8123
+      protocol: tcp
+    restart: unless-stopped
+    volumes:
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: ~/.config/appdata/homeassistant
+      target: /config
+      bind:
+        create_host_path: true
+    - type: bind
+      source: ~/storage
+      target: /storage
+      bind:
+        create_host_path: true
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
+      - "80:80/tcp"
+    environment:
+      TZ: 'America/Chicago'
+      # WEBPASSWORD: 'set a secure password here or it will be random'
+    # Volumes store your data between container upgrades
+    volumes:
+      - '/mnt/etc/pihole:/etc/pihole'
+      - '/etc/dnsmasq.d:/etc/dnsmasq.d'
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
+    restart: unless-stopped
