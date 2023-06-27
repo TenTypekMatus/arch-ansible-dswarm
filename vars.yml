@@ -43,3 +43,20 @@ tailscale_args: "--ssh"
 cargo_pkg:
   - exa
   - starship
+pvresize_to_max: false
+lvm_groups: # DO NOT TRY THIS AT HOME!!! LVM runs RAID0 by default and I know what I'm doing
+ - vgname: data 
+   disks:
+     - /dev/vdb
+     - /dev/vdc
+#   # defines if VG should exist or be removed
+#   # true or false
+   create: true
+   lvnames:
+      - lvname: docker_1
+        size: 100%FREE
+        create: true
+        filesystem: xfs
+        fsopts: -n ftype=1
+        mount: true
+        mntp: /mnt

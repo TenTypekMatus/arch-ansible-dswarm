@@ -9,6 +9,6 @@ roles:
     - geerlingguy.docker
     - oefenweb.keepalived
     - alecunsolo.cockpit
-    - tigattack.mergerfs
+    - mrlesmithjr.manage_lvm
 collections:
   - community.general

@@ -9,11 +9,9 @@
     - artis3n.tailscale
     - geerlingguy.docker
     - alecunsolo.cockpit
-    - tigattack.mergerfs 
   vars_files:
     - credentials.yml
     - vars.yml
-
   tasks:
     - name: Copy templated stack to host
       ansible.builtin.copy:
