@@ -6,18 +6,25 @@
     - robertdebock.bootstrap
     - robertdebock.buildtools
   tasks:
-
+    - name: Set up build deps
+      ansible.builtin.package:
+        name: 
+          - build-essential
+          - cmake
+          - meson
+        state: present
+        
     - name: Install exa and starship through Cargo
       community.general.cargo:
-        name: "{{ item }}"
-        with_items:
+        name:
           - exa
           - starship
+        state: present
 
     - name: Setup aliases for ls
       ansible.builtin.shell: |
         echo 'eval "$(starship init bash)"' >> ~/.bashrc
-        echo 'alias ls="exa --icons -lhi --git"' >> ~/.config/fish/config.fish
+        echo 'alias ls="exa --icons -lhi --git"' >> ~/.bashrc
 
     - name: Say done
       ansible.builtin.debug:
