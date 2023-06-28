@@ -6,7 +6,9 @@ jobs:
   check:
     runs-on: ubuntu-22.04
     steps:
+      - name: Checkout Repo
       - uses: actions/checkout@v3
+      
       - name: Check Playbooks
       - uses: ansible/ansible-lint-action@master
         with:
