@@ -1,20 +1,11 @@
-name: Lint Ansible Playbooks
-
-on: [push, pull_request]
-
+name: ansible-lint
+on:
+  push:
+    branches: ["master"]
 jobs:
-  check:
-    runs-on: ubuntu-22.04
+  build:
+    name: Ansible Lint # Naming the build is important to use it as a status check
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-      - uses: actions/checkout@v3
-      
-      - name: Check Playbooks
-      - uses: ansible/ansible-lint-action@master
-        with:
-          targets: |
-            hosts/fatra.yml
-            hosts/tatra.yml
-            hosts/matra.yml
-            site.yml
-            autorice.yml
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint@main # or version tag instead of 'main'
