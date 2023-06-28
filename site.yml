@@ -12,8 +12,3 @@
   vars_files:
     - credentials.yml
     - vars.yml
-  tasks:
-
-  - name: Start Docker compose file
-    ansible.builtin.shell: |
-        docker compose up -d
