@@ -3,11 +3,6 @@
   "extends": [
     "config:base"
   ],
-  "ansible": {
-    "fileMatch": [
-      "site.yml"
-    ]
-  },
   "docker-compose": {
     "fileMatch": [
       "^svc/.*\\.yml$"
@@ -16,11 +11,6 @@
     "ansible-galaxy": {
       "fileMatch": [
         "(^|/)requirements\\.ya?ml$"
-      ]
-    },
-    "ansible": {
-      "fileMatch": [
-        "autorice.yml"
       ]
     }
   }
