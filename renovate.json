@@ -2,5 +2,25 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
-  ]
+  ],
+  "ansible": {
+    "fileMatch": [
+      "site.yml"
+    ],
+    "ansible": {
+      "fileMatch": [
+        "autorice.yml"
+      ]
+    },
+    "ansible-galaxy": {
+      "fileMatch": [
+        "(^|/)requirements\\.ya?ml$"
+      ],
+    },
+  },
+  "docker-compose": {
+    "fileMatch": [
+      "^svc/.*\\.yml$"
+    ]
+  }
 }
