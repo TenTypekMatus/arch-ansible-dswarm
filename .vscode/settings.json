@@ -5,7 +5,8 @@
             "file:///home/matus/Projects/arch-ansible-dswarm/site.yml",
             "file:///home/matus/Projects/arch-ansible-dswarm/deploy.yml",
             "file:///home/matus/proj/arch-ansible-dswarm/deploy.yml",
-            "file:///home/matus/proj/arch-ansible-dswarm/autorice.yml"
+            "file:///home/matus/proj/arch-ansible-dswarm/autorice.yml",
+            "file:///home/matus/proj/arch-ansible-dswarm/hosts/*.yml"
         ],
         "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": [
             "file:///home/matus/Projects/arch-ansible-dswarm/docker/swarm_node.rules.yml",

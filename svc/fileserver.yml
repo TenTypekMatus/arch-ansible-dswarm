@@ -32,12 +32,12 @@ services:
       bind:
         create_host_path: true
     - type: bind
-      source: ~/.config/appdata/gitea
+      source: /mnt/gitea/data
       target: /data
       bind:
         create_host_path: true
     - type: bind
-      source: ~/storage
+      source: /mnt/storage
       target: /storage
       bind:
         create_host_path: true
@@ -51,9 +51,9 @@ services:
       - TZ=Etc/UTC
       - CLI_ARGS= #optional
     volumes:
-      - /path/to/appdata/config:/config
-      - /path/to/backups:/backups
-      - /path/to/source:/source
+      - /mnt/duplicati/config:/config
+      - /mnt/duplicati/backups:/backups
+      - /mnt:/source
     ports:
       - 8200:8200
     restart: unless-stopped
